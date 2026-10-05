@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍🚀</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cosmic Odyssey | 3D Astronaut Space Portfolio</title>
+    <meta name="description" content="An immersive 3D space storytelling portfolio powered by Three.js. Voyage through space with Commander Cosmo and explore 5 revolutionary projects across planetary sectors." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body>
+    <!-- Three.js Canvas Container -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- UI Overlay Layer -->
+    <div id="ui-container">
+      
+      <!-- Top Header Navigation -->
+      <header class="hud-header">
+        <div class="logo">
+          <span class="logo-icon"><i class="fa-solid fa-user-astronaut"></i></span>
+          <div class="logo-text">
+            <span class="brand-name">COSMO<span class="highlight">ODYSSEY</span></span>
+            <span class="brand-sub">PORTFOLIO EXPEDITION</span>
+          </div>
+        </div>
+
+        <!-- Planet Sector Nav -->
+        <nav class="sector-nav" id="sector-nav">
+          <button class="nav-btn active" data-sector="0"><span class="sector-num">00</span> LAUNCH</button>
+          <button class="nav-btn" data-sector="1"><span class="sector-num">01</span> AETHERIA</button>
+          <button class="nav-btn" data-sector="2"><span class="sector-num">02</span> CHRONO</button>
+          <button class="nav-btn" data-sector="3"><span class="sector-num">03</span> STARTLY</button>
+          <button class="nav-btn" data-sector="4"><span class="sector-num">04</span> TAILWIND</button>
+          <button class="nav-btn" data-sector="5"><span class="sector-num">05</span> CALCULATOR</button>
+          <button class="nav-btn" data-sector="6"><span class="sector-num">06</span> ITDESK</button>
+          <button class="nav-btn" data-sector="7"><span class="sector-num">07</span> DROPSHIP</button>
+          <button class="nav-btn" data-sector="8"><span class="sector-num">08</span> STATION</button>
+        </nav>
+
+        <!-- Sound & Control Toggle -->
+        <div class="header-actions">
+          <button class="icon-btn" id="audio-toggle" title="Toggle Cosmic Ambiance Audio">
+            <i class="fa-solid fa-volume-xmark" id="audio-icon"></i>
+            <span class="audio-waves" id="audio-waves">
+              <span></span><span></span><span></span>
+            </span>
+          </button>
+          <button class="cta-btn-sm" id="contact-quick-btn">
+            <i class="fa-solid fa-paper-plane"></i> TRANSMIT
+          </button>
+        </div>
+      </header>
+
+      <!-- Scroll Progress & Flight Telemetry Bar -->
+      <div class="telemetry-bar">
+        <div class="telemetry-item">
+          <span class="label">MISSION PROGRESS</span>
+          <span class="value" id="warp-progress-text">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="warp-progress-fill"></div>
+        </div>
+        <div class="telemetry-item">
+          <span class="label">CURRENT LOCATION</span>
+          <span class="value" id="current-location-text">SECTOR 0: LAUNCHPAD</span>
+        </div>
+        <div class="telemetry-item speed-indicator">
+          <span class="label">VELOCITY</span>
+          <span class="value" id="velocity-text">0.0 Warp</span>
+        </div>
+      </div>
+
+      <!-- Main Story Sections Container (Provides natural scroll height) -->
+      <main id="scroll-sections">
+
+        <!-- Sector 0: Hero Launchpad -->
+        <section class="story-section hero-section" id="section-0">
+          <div class="hero-content">
+            <div class="badge"><i class="fa-solid fa-rocket"></i> EXPLORATION INITIALIZED</div>
+            <h1 class="hero-title">VOYAGE THROUGH <br><span class="glow-text">DIGITAL COSMOS</span></h1>
+            <p class="hero-subtitle">
+              Greeting Traveler. I am <strong>Commander Cosmo</strong> — Full Stack & 3D Web Engineer. 
+              Join me on a interstellar expedition across 7 project worlds.
+            </p>
+            <div class="hero-cta-group">
+              <button class="btn-primary" id="start-voyage-btn">
+                <i class="fa-solid fa-compass"></i> INITIATE VOYAGE
+              </button>
+              <button class="btn-secondary" id="direct-projects-btn">
+                <i class="fa-solid fa-layer-group"></i> VIEW ALL PROJECTS
+              </button>
+            </div>
+            <div class="scroll-hint">
+              <div class="mouse-icon">
+                <div class="wheel"></div>
+              </div>
+              <span>SCROLL TO TRAVEL THROUGH SPACE</span>
+              <i class="fa-solid fa-chevron-down bounce"></i>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sector 1: Planet 1 (Climbing the Stairs) -->
+        <section class="story-section project-section" id="section-1">
+          <div class="planet-hud-card" data-planet="1">
+            <div class="planet-badge">SECTOR 01 • CYBER MESH PLANET</div>
+            <h2 class="planet-title">Climbing the Stairs</h2>
+            <p class="planet-tagline">Interactive Game-Level Career Journey & Staircase Portfolio</p>
+            
+            <div class="tech-stack-pills">
+              <span class="pill">HTML5</span>
+              <span class="pill">CSS3</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">MERN Stack</span>
+              <span class="pill">React</span>
+            </div>
+
+            <p class="project-brief">
+              An interactive level-based career portfolio where users climb a 3D staircase through developer milestones, unlocking projects and live technology orbits.
+            </p>
+
+            <div class="card-actions">
+              <button class="btn-glow open-modal-btn" data-project="0">
+                <i class="fa-solid fa-binoculars"></i> INSPECT DOSSIER
+              </button>
+              <a href="https://week1portfolio.vercel.app/" target="_blank" class="btn-icon-link" title="Launch Vercel Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sector 2: Planet 2 (Employee Management System) -->
+        <section class="story-section project-section" id="section-2">
+          <div class="planet-hud-card" data-planet="2">
+            <div class="planet-badge">SECTOR 02 • ICE GLACIER WORLD</div>
+            <h2 class="planet-title">Employee Management</h2>
+            <p class="planet-tagline">Full-Stack Enterprise HR, Task & Employee Analytics Dashboard</p>
+            
+            <div class="tech-stack-pills">
+              <span class="pill">React 18</span>
+              <span class="pill">Vite</span>
+              <span class="pill">Tailwind CSS</span>
+              <span class="pill">Node.js</span>
+              <span class="pill">MongoDB</span>
+            </div>
+
+            <p class="project-brief">
+              High-performance employee management dashboard with role-based access control, task delegation, and real-time workforce analytics.
+            </p>
+
+            <div class="card-actions">
+              <button class="btn-glow open-modal-btn" data-project="1">
+                <i class="fa-solid fa-binoculars"></i> INSPECT DOSSIER
+              </button>
+              <a href="https://employee-management-two-cyan.vercel.app/" target="_blank" class="btn-icon-link" title="Launch Vercel Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sector 3: Planet 3 (Startly SaaS Landing Page) -->
+        <section class="story-section project-section" id="section-3">
+          <div class="planet-hud-card" data-planet="3">
+            <div class="planet-badge">SECTOR 03 • GOLDEN RINGED PLANET</div>
+            <h2 class="planet-title">Startly SaaS</h2>
+            <p class="planet-tagline">Modern SaaS Product Landing Page & Digital Platform Showcase</p>
+            
+            <div class="tech-stack-pills">
+              <span class="pill">HTML5</span>
+              <span class="pill">CSS3</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">Lucide Icons</span>
+              <span class="pill">FontAwesome</span>
+              <span class="pill">Vercel</span>
+            </div>
+
+            <p class="project-brief">
+              A sleek, high-converting SaaS landing page featuring dynamic navigation, responsive typography, modern feature grid, customer social proof, and transparent pricing tiers.
+            </p>
+
+            <div class="card-actions">
+              <button class="btn-glow open-modal-btn" data-project="2">
+                <i class="fa-solid fa-binoculars"></i> INSPECT DOSSIER
+              </button>
+              <a href="https://landingpage-swart-pi.vercel.app/" target="_blank" class="btn-icon-link" title="Launch Vercel Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sector 4: Planet 4 (Tailwind Landing Page) -->
+        <section class="story-section project-section" id="section-4">
+          <div class="planet-hud-card" data-planet="4">
+            <div class="planet-badge">SECTOR 04 • TERRA MATRIX</div>
+            <h2 class="planet-title">Tailwind Landing Page</h2>
+            <p class="planet-tagline">Modern Responsive Web Landing Page Built with Tailwind CSS</p>
+            
+            <div class="tech-stack-pills">
+              <span class="pill">Tailwind CSS</span>
+              <span class="pill">HTML5</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">Vite</span>
+              <span class="pill">Vercel</span>
+            </div>
+
+            <p class="project-brief">
+              A sleek, high-converting responsive web landing page engineered with Tailwind CSS utility classes, flexible grid layouts, dynamic components, and optimized performance.
+            </p>
+
+            <div class="card-actions">
+              <button class="btn-glow open-modal-btn" data-project="3">
+                <i class="fa-solid fa-binoculars"></i> INSPECT DOSSIER
+              </button>
+              <a href="https://tailwind-landing-page-h9veszd3z-chithra.vercel.app/" target="_blank" class="btn-icon-link" title="Launch Vercel Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sector 5: Planet 5 (Action Calculator) -->
+        <section class="story-section project-section" id="section-5">
+          <div class="planet-hud-card" data-planet="5">
+            <div class="planet-badge">SECTOR 05 • PURPLE COSMIC NEBULA</div>
+            <h2 class="planet-title">Action Calculator</h2>
+            <p class="planet-tagline">Full-Stack Expression Calculator with Node.js API & Render Deployment</p>
+            
+            <div class="tech-stack-pills">
+              <span class="pill">Node.js</span>
+              <span class="pill">Express</span>
+              <span class="pill">HTML5</span>
+              <span class="pill">CSS3</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">Render</span>
+            </div>
+
+            <p class="project-brief">
+              A sleek full-stack mathematical calculator web application featuring real-time client keypad input, keyboard accessibility, backend API computation via Node.js endpoints, and live deployment on Render.
+            </p>
+
+            <div class="card-actions">
+              <button class="btn-glow open-modal-btn" data-project="4">
+                <i class="fa-solid fa-binoculars"></i> INSPECT DOSSIER
+              </button>
+              <a href="https://actioncalculator.onrender.com/" target="_blank" class="btn-icon-link" title="Launch Render Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sector 6: Planet 6 (ITDesk IT Support System) -->
+        <section class="story-section project-section" id="section-6">
+          <div class="planet-hud-card" data-planet="6">
+            <div class="planet-badge">SECTOR 06 • ELECTRIC MATRIX PLANET</div>
+            <h2 class="planet-title">ITDesk Support System</h2>
+            <p class="planet-tagline">Real-Time Enterprise IT Support & Automated Ticket Management System</p>
+            
+            <div class="tech-stack-pills">
+              <span class="pill">React</span>
+              <span class="pill">Node.js</span>
+              <span class="pill">Express</span>
+              <span class="pill">MongoDB</span>
+              <span class="pill">Tailwind CSS</span>
+              <span class="pill">Vercel</span>
+            </div>
+
+            <p class="project-brief">
+              Enterprise-grade IT support platform with real-time ticket tracking, automated routing, SLA escalation management, and interactive admin metrics.
+            </p>
+
+            <div class="card-actions">
+              <button class="btn-glow open-modal-btn" data-project="5">
+                <i class="fa-solid fa-binoculars"></i> INSPECT DOSSIER
+              </button>
+              <a href="https://it-support-desk-puce.vercel.app/login" target="_blank" class="btn-icon-link" title="Launch ITDesk Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sector 7: Planet 7 (DropShipHub B2B Platform) -->
+        <section class="story-section project-section" id="section-7">
+          <div class="planet-hud-card" data-planet="7">
+            <div class="planet-badge">SECTOR 07 • EMERALD CRYSTAL PLANET</div>
+            <h2 class="planet-title">DropShipHub B2B</h2>
+            <p class="planet-tagline">High-Scale B2B Dropshipping, Inventory Sync & Distribution Platform</p>
+            
+            <div class="tech-stack-pills">
+              <span class="pill">React</span>
+              <span class="pill">Node.js</span>
+              <span class="pill">Express</span>
+              <span class="pill">MongoDB</span>
+              <span class="pill">Tailwind CSS</span>
+              <span class="pill">Vercel</span>
+            </div>
+
+            <p class="project-brief">
+              End-to-end B2B dropshipping management ecosystem featuring automated product catalog synchronization, multi-vendor order routing, margin analytics, and admin controls.
+            </p>
+
+            <div class="card-actions">
+              <button class="btn-glow open-modal-btn" data-project="6">
+                <i class="fa-solid fa-binoculars"></i> INSPECT DOSSIER
+              </button>
+              <a href="https://dropshipping-free-dep.vercel.app/admin" target="_blank" class="btn-icon-link" title="Launch DropShipHub Demo"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sector 8: Space Station Landing & Terminal -->
+        <section class="story-section terminal-section" id="section-8">
+          <div class="terminal-container">
+            
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="terminal-title"><i class="fa-solid fa-satellite-dish"></i> DEEP SPACE COMMAND STATION • COMMUNICATIONS TERMINAL</span>
+            </div>
+
+            <div class="terminal-grid">
+              
+              <!-- Left Column: About & Skills Matrix -->
+              <div class="terminal-col">
+                <div class="bio-box">
+                  <h3><i class="fa-solid fa-user-astronaut"></i> COMMANDER DOSSIER</h3>
+                  <p>
+                    Passionate Full Stack & 3D Graphics Engineer building next-gen web applications, interactive 3D experiences, and high-scale cloud platforms.
+                  </p>
+                  <div class="stat-counters">
+                    <div class="stat">
+                      <span class="num">5+</span>
+                      <span class="lbl">Years Coding</span>
+                    </div>
+                    <div class="stat">
+                      <span class="num">25+</span>
+                      <span class="lbl">Projects Built</span>
+                    </div>
+                    <div class="stat">
+                      <span class="num">100%</span>
+                      <span class="lbl">Mission Success</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="skills-box">
+                  <h3><i class="fa-solid fa-microchip"></i> SYSTEM CAPABILITIES</h3>
+                  <div class="skill-tags">
+                    <span class="st-tag">JavaScript (ESNext)</span>
+                    <span class="st-tag">TypeScript</span>
+                    <span class="st-tag">Three.js / WebGL</span>
+                    <span class="st-tag">React / Next.js</span>
+                    <span class="st-tag">Node.js / Express</span>
+                    <span class="st-tag">Python / AI ML</span>
+                    <span class="st-tag">GLSL Shaders</span>
+                    <span class="st-tag">MongoDB / PostgreSQL</span>
+                    <span class="st-tag">Docker / AWS</span>
+                    <span class="st-tag">GSAP Animations</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Transmission Form -->
+              <div class="terminal-col">
+                <div class="contact-box">
+                  <h3><i class="fa-solid fa-satellite"></i> TRANSMIT FREQUENCY</h3>
+                  <form id="space-contact-form" onsubmit="return false;">
+                    <div class="form-group">
+                      <label for="contact-name">CALLSIGN / NAME</label>
+                      <input type="text" id="contact-name" placeholder="Captain Alex Vance" required />
+                    </div>
+                    <div class="form-group">
+                      <label for="contact-email">COMM FREQUENCY / EMAIL</label>
+                      <input type="email" id="contact-email" placeholder="alex@starfleet.org" required />
+                    </div>
+                    <div class="form-group">
+                      <label for="contact-message">TRANSMISSION DATA</label>
+                      <textarea id="contact-message" rows="4" placeholder="Initiating contact regarding upcoming 3D web mission..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary full-width" id="submit-comm-btn">
+                      <i class="fa-solid fa-paper-plane"></i> DISPATCH TRANSMISSION
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Terminal Footer -->
+            <div class="terminal-footer">
+              <div class="social-links">
+                <a href="https://github.com" target="_blank" title="GitHub Profile"><i class="fa-brands fa-github"></i> GitHub</a>
+                <a href="https://linkedin.com" target="_blank" title="LinkedIn Profile"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://twitter.com" target="_blank" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
+                <a href="mailto:commander@space.dev" title="Direct Email"><i class="fa-solid fa-envelope"></i> Email</a>
+              </div>
+              <p class="copyright">© 2026 Commander Cosmo. Built with Three.js, WebGL & Passion for Space.</p>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Project Dossier Modal Overlay -->
+      <div class="modal-backdrop" id="project-modal" aria-hidden="true">
+        <div class="modal-window">
+          <button class="modal-close" id="modal-close-btn" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+          
+          <div class="modal-body">
+            <div class="modal-header">
+              <span class="modal-sector" id="m-sector">SECTOR 01</span>
+              <h2 class="modal-title" id="m-title">Project Name</h2>
+              <p class="modal-subtitle" id="m-subtitle">Project Subtitle</p>
+            </div>
+
+            <div class="modal-content-grid">
+              <!-- Left side: Interactive Canvas Preview / Screen Demo -->
+              <div class="modal-preview-box">
+                <div class="screen-header">
+                  <span class="screen-dot"></span>
+                  <span class="screen-dot"></span>
+                  <span class="screen-dot"></span>
+                  <span class="screen-title" id="m-screen-title">INTERACTIVE SIMULATION</span>
+                </div>
+                <div class="interactive-demo-container" id="m-demo-container">
+                  <!-- Dynamic canvas or interactive preview inserted via JS -->
+                </div>
+              </div>
+
+              <!-- Right side: Details & Features -->
+              <div class="modal-info-box">
+                <h3><i class="fa-solid fa-circle-info"></i> OVERVIEW</h3>
+                <p id="m-description">Full description goes here...</p>
+
+                <h3><i class="fa-solid fa-list-check"></i> KEY INNOVATIONS</h3>
+                <ul class="innovations-list" id="m-innovations">
+                  <!-- Filled dynamically -->
+                </ul>
+
+                <h3><i class="fa-solid fa-code"></i> ARCHITECTURE & TECH</h3>
+                <div class="tech-tags-group" id="m-tech-tags">
+                  <!-- Filled dynamically -->
+                </div>
+
+                <div class="modal-actions">
+                  <a href="#" id="m-live-link" target="_blank" class="btn-primary">
+                    <i class="fa-solid fa-rocket"></i> LAUNCH LIVE SYSTEM
+                  </a>
+                  <a href="#" id="m-repo-link" target="_blank" class="btn-secondary">
+                    <i class="fa-brands fa-github"></i> VIEW REPOSITORY
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+
